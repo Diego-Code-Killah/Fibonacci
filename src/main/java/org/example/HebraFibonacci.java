@@ -13,4 +13,15 @@ public class HebraFibonacci extends Thread {
         this.i = i;
         this.valores = valores;
     }
+    @Override
+    public void run() {
+        while (ultimoCalculado < i - 1) {
+            Thread.onSpinWait();
+        }
+
+        valores[i] = valores[i - 1] + valores[i - 2];
+        System.out.println("Fibonacci " + i + ": " + valores[i]);
+
+        ultimoCalculado = i;
+    }
 }
